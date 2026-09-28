@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0b5ed7">
+<title>Tutor de Fracciones 64–125</title>
+<style>
+:root{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;color:#152033;background:#eef3f9}
+*{box-sizing:border-box}body{margin:0}
+header{position:sticky;top:0;z-index:10;background:#0b5ed7;color:#fff;padding:calc(12px + env(safe-area-inset-top)) 14px 12px;box-shadow:0 2px 12px #0002}
+header h1{font-size:21px;margin:0 0 10px}
+.controls{display:flex;gap:8px;align-items:center}
+select,button{font-size:16px;border-radius:12px;border:1px solid #ced8e4;padding:10px 12px;min-height:44px}
+select{flex:1;background:#fff}button{background:#fff;font-weight:800}
+main{max-width:920px;margin:auto;padding:12px 12px 40px}
+.card{background:#fff;border-radius:20px;padding:18px;margin-bottom:14px;box-shadow:0 4px 18px #16253c12}
+.badge{display:inline-block;background:#e8f1ff;color:#0b5ed7;font-weight:900;padding:6px 10px;border-radius:999px}
+h2{font-size:20px;margin:10px 0}.method{font-size:18px;line-height:1.5}
+.tip{margin-top:12px;background:#fff8dd;border-left:4px solid #d8a100;padding:12px;border-radius:10px;line-height:1.45}
+.primary{width:100%;margin-top:14px;background:#0b5ed7;color:#fff;border:0}
+.explain{display:none;margin-top:16px}.step{display:flex;gap:12px;padding:12px 0;border-bottom:1px solid #edf1f5;font-size:18px;line-height:1.5}
+.step:last-child{border-bottom:0}.num{width:34px;height:34px;flex:0 0 34px;display:grid;place-items:center;border-radius:50%;background:#0b5ed7;color:#fff;font-weight:900}
+.final{margin-top:14px;padding:14px;border-radius:13px;background:#eaf8ef;font-size:21px;font-weight:900}
+.viewerHead{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.viewerHead h2{margin:0}.toggle{background:#f5f8fc;color:#0b5ed7}
+.pageWrap{display:none;margin-top:12px}.pageWrap.show{display:block}
+.page{width:100%;height:auto;display:block;border:1px solid #d9e1ea;border-radius:12px;background:#f5f5f5}
+.imgError{display:none;margin-top:10px;padding:12px;border-radius:10px;background:#fff0f0;color:#8f2424;font-weight:700}
+.nav{display:flex;gap:10px}.nav button{flex:1;color:#0b5ed7}
+.small{font-size:14px;color:#667085;line-height:1.4}
+@media(max-width:560px){.card{padding:16px}.step,.method{font-size:17px}}
+</style>
+</head>
+<body>
+<header>
+<h1>Tutor de Fracciones</h1>
+<div class="controls">
+<select id="pick"></select><span id="count"></span>
+</div>
+</header>
+
+<main>
+<section class="card">
+<span class="badge" id="label"></span>
+<h2>Cómo resolverlo</h2>
+<div class="method" id="method"></div>
+<div class="tip"><strong>Idea clave:</strong> primero identifica qué pide el problema; después decide si debes sumar, restar, multiplicar, dividir, comparar o usar una proporción.</div>
+<button id="explainBtn" class="primary">Explícame paso a paso</button>
+<div id="explain" class="explain">
+<h2>Explicación fácil</h2>
+<div id="steps"></div>
+<div id="final" class="final"></div>
+</div>
+</section>
+
+<section class="card">
+<div class="viewerHead"><h2>Problema original</h2><button id="toggleQ" class="toggle">Ver página</button></div>
+<div id="qwrap" class="pageWrap">
+<img id="qimg" class="page" alt="Página del problema">
+<div id="qerr" class="imgError">No se pudo cargar la imagen. Verifica que la carpeta <b>pages</b> esté junto al archivo <b>index.html</b>.</div>
+</div>
+</section>
+
+<section class="card">
+<div class="viewerHead"><h2>Explicación original del libro</h2><button id="toggleA" class="toggle">Ver página</button></div>
+<div id="awrap" class="pageWrap">
+<img id="aimg" class="page" alt="Página de explicación">
+<div id="aerr" class="imgError">No se pudo cargar la imagen. Verifica que la carpeta <b>pages</b> esté junto al archivo <b>index.html</b>.</div>
+</div>
+<p class="small">Esta versión usa imágenes guardadas localmente dentro de la carpeta <b>pages</b>, por lo que funciona bien en GitHub Pages si subes la estructura completa.</p>
+</section>
+
+<div class="nav">
+<button id="prev">← Anterior</button><button id="next">Siguiente →</button>
+</div>
+</main>
+
+<script>
+const problems=[{"n": 64, "q": 1, "a": 17, "ans": "D", "method": "Promedio: suma las millas de los cuatro días y divide el total entre 4.", "steps": ["Suma las distancias de los 4 días: 5½ + 6¼ + 4½ + 2¾ = 19 millas.", "Como piden el promedio, divide el total entre 4 días: 19 ÷ 4 = 4¾.", "Respuesta: D (4¾ millas)."]}, {"n": 65, "q": 1, "a": 17, "ans": "B", "method": "Resta: identifica lo que se quita o la diferencia. Usa denominador común; si hace falta, toma prestado 1 entero.", "steps": ["Es una diferencia de estaturas: 64⅜ − 59⅝.", "Como ⅜ es menor que ⅝, toma 1 entero de 64: 64⅜ = 63 11/8.", "Ahora resta: 63 11/8 − 59⅝ = 4 6/8 = 4¾.", "Respuesta: B."]}, {"n": 66, "q": 2, "a": 17, "ans": "C", "method": "Suma repetida de fracciones: cuenta las dos caminatas y las dos comidas, luego suma con denominador común.", "steps": ["Larry camina con su perro ¾ de hora dos veces y lo alimenta ⅙ de hora dos veces.", "Suma: ¾ + ¾ + ⅙ + ⅙.", "Con denominador 12: 9/12 + 9/12 + 2/12 + 2/12 = 22/12 = 1 5/6.", "Respuesta: C."]}, {"n": 67, "q": 2, "a": 17, "ans": "A", "method": "Resta: identifica lo que se quita o la diferencia. Usa denominador común; si hace falta, toma prestado 1 entero.", "steps": ["Hay 16 páginas y 3⅜ son anuncios, así que resta: 16 − 3⅜.", "Toma 1 entero: 16 = 15 8/8.", "15 8/8 − 3⅜ = 12⅝.", "Respuesta: A."]}, {"n": 68, "q": 2, "a": 17, "ans": "C", "method": "Fracción restante: si leyó 3/4, falta 1/4. Calcula 1/4 de 48.", "steps": ["Si ya leyó ¾, le falta ¼ del trabajo.", "Calcula ¼ de 48: 48 ÷ 4 = 12.", "Respuesta: C (12 páginas)."]}, {"n": 69, "q": 2, "a": 17, "ans": "B", "method": "Multiplica cada tamaño de lata por la cantidad de latas y luego suma ambos resultados.", "steps": ["Tres latas de 4½ oz: 3 × 4½ = 13½ oz.", "Cinco latas de 8¼ oz: 5 × 8¼ = 41¼ oz.", "Suma: 13½ + 41¼ = 54¾ oz.", "Respuesta: B."]}, {"n": 70, "q": 2, "a": 18, "ans": "B", "method": "Suma de números mixtos: usa un denominador común para las fracciones y simplifica.", "steps": ["Suma las tres distancias: 2¾ + 1⅓ + 1⅖.", "Usa denominador común 60: 2 45/60 + 1 20/60 + 1 24/60 = 4 89/60.", "89/60 = 1 29/60, así que el total es 5 29/60.", "Respuesta: B."]}, {"n": 71, "q": 3, "a": 18, "ans": "C", "method": "Parte restante: suma lo leído en los primeros tres días y réstalo de 1 entero.", "steps": ["Suma lo leído en los primeros 3 días: ⅛ + ⅓ + ¼.", "Con denominador 24: 3/24 + 8/24 + 6/24 = 17/24.", "Lo que faltó el cuarto día es 24/24 − 17/24 = 7/24.", "Respuesta: C."]}, {"n": 72, "q": 3, "a": 18, "ans": "D", "method": "Multiplicación de fracciones: convierte números mixtos a impropias, multiplica numeradores y denominadores, y simplifica.", "steps": ["Pago = horas × tarifa: 5½ × $7.", "Convierte 5½ = 11/2. Entonces 11/2 × 7 = 77/2 = 38½.", "38½ dólares = $38.50.", "Respuesta: D."]}, {"n": 73, "q": 3, "a": 18, "ans": "D", "method": "Multiplicación de fracciones: convierte números mixtos a impropias, multiplica numeradores y denominadores, y simplifica.", "steps": ["Bolsas = acres × bolsas por acre: 3¾ × 2⅔.", "Convierte: 3¾ = 15/4 y 2⅔ = 8/3.", "15/4 × 8/3 = 120/12 = 10.", "Respuesta: D (10 bolsas)."]}, {"n": 74, "q": 3, "a": 18, "ans": "A", "method": "Proporción: organiza dos razones equivalentes, multiplica cruzado y despeja la incógnita.", "steps": ["Un lote de scones alimenta a 3/11 de 44 personas: 44 × 3/11 = 12 personas.", "Cinco lotes alimentan 12 × 5 = 60 personas.", "Ya hay 44 personas; adicionales: 60 − 44 = 16.", "Respuesta: A."]}, {"n": 75, "q": 4, "a": 18, "ans": "A", "method": "Resta: identifica lo que se quita o la diferencia. Usa denominador común; si hace falta, toma prestado 1 entero.", "steps": ["Después de la fiesta queda 1 − 4/7 = 3/7 del pastel.", "Guy come 1/3 de lo que quedó: 1/3 × 3/7 = 1/7.", "Respuesta: A."]}, {"n": 76, "q": 4, "a": 18, "ans": "B", "method": "Conversión: multiplica la fracción de hora por 60 minutos.", "steps": ["Una hora tiene 60 minutos.", "Calcula 5/6 de 60: 60 × 5/6 = 50.", "Respuesta: B (50 minutos)."]}, {"n": 77, "q": 4, "a": 19, "ans": "B", "method": "División de fracciones: convierte mixtos a impropias, invierte la segunda fracción y multiplica.", "steps": ["Pregunta cuántos comerciales de ¾ de minuto caben en 6 minutos.", "Divide: 6 ÷ ¾ = 6 × 4/3 = 8.", "Respuesta: B."]}, {"n": 78, "q": 4, "a": 19, "ans": "D", "method": "Comparar fracciones: conviértelas a un denominador común y compara los numeradores.", "steps": ["Compara ¾, 2/5, 5/8 y ½ con el mismo denominador 40.", "¾=30/40, 2/5=16/40, 5/8=25/40, ½=20/40.", "De menor a mayor: Susan, John, Mike, Betty.", "Respuesta: D."]}, {"n": 79, "q": 5, "a": 19, "ans": "B", "method": "División: divide la cantidad total entre el tamaño de una porción.", "steps": ["Número de porciones = cantidad total ÷ tamaño de cada porción.", "21 ÷ ¾ = 21 × 4/3 = 28.", "Respuesta: B."]}, {"n": 80, "q": 5, "a": 19, "ans": "C", "method": "Tiempo = distancia ÷ velocidad. Convierte los números mixtos y divide fracciones.", "steps": ["Tiempo = distancia ÷ velocidad.", "8¾ ÷ 3½ = 35/4 ÷ 7/2 = 35/4 × 2/7 = 5/2 = 2½ horas.", "Respuesta: C."]}, {"n": 81, "q": 5, "a": 19, "ans": "D", "method": "Multiplicación de fracciones: convierte números mixtos a impropias, multiplica numeradores y denominadores, y simplifica.", "steps": ["Calcula 2/5 de $32 millones.", "32 × 2/5 = 64/5 = 12 4/5 millones.", "Respuesta: D."]}, {"n": 82, "q": 5, "a": 19, "ans": "D", "method": "Multiplicación de fracciones: convierte números mixtos a impropias, multiplica numeradores y denominadores, y simplifica.", "steps": ["Multiplica la harina de una receta por 2½.", "2⅓ × 2½ = 7/3 × 5/2 = 35/6 = 5⅚.", "Respuesta: D."]}, {"n": 83, "q": 5, "a": 19, "ans": "D", "method": "Suma de longitudes: suma las tres medidas usando denominador común.", "steps": ["Suma las tres cintas: 11½ + 8¼ + 8¼.", "8¼ + 8¼ = 16½; luego 16½ + 11½ = 28.", "Respuesta: D."]}, {"n": 84, "q": 6, "a": 19, "ans": "C", "method": "Suma de pesos: suma los tres números mixtos usando denominador común.", "steps": ["Suma los pesos: 3¼ + 8½ + 4⅔.", "Con denominador 12: 3 3/12 + 8 6/12 + 4 8/12 = 15 17/12 = 16 5/12.", "Respuesta: C."]}, {"n": 85, "q": 6, "a": 19, "ans": "C", "method": "Perímetro: suma todos los lados. Si hay fracciones, usa un denominador común.", "steps": ["Piden la cerca alrededor, o sea el perímetro.", "2 × 4½ + 2 × 3 = 9 + 6 = 15 yardas.", "Respuesta: C."]}, {"n": 86, "q": 6, "a": 19, "ans": "A", "method": "División de fracciones: convierte mixtos a impropias, invierte la segunda fracción y multiplica.", "steps": ["Cada pizza usa ¼ de paquete. Con 12 paquetes, divide: 12 ÷ ¼.", "Dividir por ¼ es multiplicar por 4: 12 × 4 = 48.", "Respuesta: A."]}, {"n": 87, "q": 6, "a": 20, "ans": "B", "method": "Multiplicación de fracciones: convierte números mixtos a impropias, multiplica numeradores y denominadores, y simplifica.", "steps": ["Costo = yardas × precio por yarda.", "3½ × $25 = 7/2 × 25 = 175/2 = $87.50.", "Respuesta: B."]}, {"n": 88, "q": 6, "a": 20, "ans": "B", "method": "Proporción: organiza dos razones equivalentes, multiplica cruzado y despeja la incógnita.", "steps": ["10 cucharadas hacen 6 vasos. Para 1½ vasos usa una proporción.", "10/6 = x/(1½). Entonces x = 10 × 1.5 ÷ 6 = 2.5.", "Respuesta: B (2½ cucharadas)."]}, {"n": 89, "q": 7, "a": 20, "ans": "D", "method": "Pago por hora = dinero ganado ÷ horas trabajadas.", "steps": ["Pago por hora = dinero ganado ÷ horas trabajadas.", "$195 ÷ 32½ = 195 ÷ 65/2 = 195 × 2/65 = 6.", "Respuesta: D ($6 por hora)."]}, {"n": 90, "q": 7, "a": 20, "ans": "A", "method": "Área = ancho × largo.", "steps": ["Área = largo × ancho.", "5½ × 7½ = 11/2 × 15/2 = 165/4 = 41¼ pies².", "Respuesta: A."]}, {"n": 91, "q": 7, "a": 20, "ans": "A", "method": "Suma de tiempos: suma las cuatro semanas usando denominador común.", "steps": ["Suma las horas de las cuatro semanas.", "4½ + 3¾ + 8⅕ + 1⅓ = 17 47/60.", "Respuesta: A."]}, {"n": 92, "q": 7, "a": 20, "ans": "A", "method": "Calcula el tiempo total de cada grupo de comerciales y luego suma.", "steps": ["Cuatro comerciales de ½ minuto duran 4 × ½ = 2 minutos.", "Tres de ¼ minuto duran 3 × ¼ = ¾ minuto.", "Total: 2 + ¾ = 2¾ minutos.", "Respuesta: A."]}, {"n": 93, "q": 8, "a": 20, "ans": "C", "method": "Si el pago nuevo es 8/9 del original, plantea (8/9)x = 1128 y despeja x.", "steps": ["Si se redujo 1/9, el nuevo pago es 8/9 del original.", "Plantea (8/9)x = 1128.", "x = 1128 × 9/8 = 1269.", "Respuesta: C ($1,269)."]}, {"n": 94, "q": 8, "a": 20, "ans": "C", "method": "Multiplicación de fracciones: convierte números mixtos a impropias, multiplica numeradores y denominadores, y simplifica.", "steps": ["Triplicar significa multiplicar por 3.", "¾ × 3 = 9/4 = 2¼ tazas.", "Respuesta: C."]}, {"n": 95, "q": 8, "a": 21, "ans": "C", "method": "Proporción: organiza dos razones equivalentes, multiplica cruzado y despeja la incógnita.", "steps": ["1⅓ impresoras producen 15 páginas por minuto.", "Para 6 impresoras: 15 × 6 ÷ (4/3) = 67½ páginas por minuto.", "En 8 minutos: 67½ × 8 = 540 páginas.", "Respuesta: C."]}, {"n": 96, "q": 8, "a": 21, "ans": "C", "method": "Primero calcula 1/3 de $2,400. Resta esa cantidad y divide el resto entre 10 ganadores.", "steps": ["Primero, 1/3 de $2,400 = $800 para el primer ganador.", "Quedan $2,400 − $800 = $1,600.", "Los 10 ganadores siguientes se reparten $1,600: 1600 ÷ 10 = $160 cada uno.", "Respuesta: C."]}, {"n": 97, "q": 9, "a": 21, "ans": "A", "method": "Resta: identifica lo que se quita o la diferencia. Usa denominador común; si hace falta, toma prestado 1 entero.", "steps": ["Todo el personal representa 8/8.", "Si 3/8 trabaja en contabilidad, fuera de contabilidad queda 8/8 − 3/8 = 5/8.", "5/8 también equivale a 10/16.", "Respuesta: A."]}, {"n": 98, "q": 9, "a": 21, "ans": "B", "method": "Resta las galletas comidas. Forma fracción restante/total y simplifica.", "steps": ["Quedan 44 − 8 = 36 galletas.", "La fracción restante es 36/44.", "Simplifica dividiendo entre 4: 36/44 = 9/11.", "Respuesta: B."]}, {"n": 99, "q": 9, "a": 21, "ans": "D", "method": "Calcula 1/8 de 12 galones.", "steps": ["Calcula 1/8 de 12 galones: 12 × 1/8 = 12/8.", "12/8 = 3/2 = 1½ galones.", "Respuesta: D."]}, {"n": 100, "q": 9, "a": 21, "ans": "A", "method": "Comparar fracciones: conviértelas a un denominador común y compara los numeradores.", "steps": ["Compara ¾, 3/5, ⅔ y 2/5.", "Con denominador 60: 45/60, 36/60, 40/60 y 24/60.", "La mayor es 45/60 = ¾, que corresponde a Joey.", "Respuesta: A."]}, {"n": 101, "q": 10, "a": 22, "ans": "B", "method": "Cuenta partes iguales sombreadas / partes totales y simplifica.", "steps": ["La figura puede dividirse en 6 partes iguales.", "3 de esas 6 partes están sombreadas: 3/6.", "Simplifica: 3/6 = 1/2.", "Respuesta: B."]}, {"n": 102, "q": 10, "a": 22, "ans": "D", "method": "Multiplicación de fracciones: convierte números mixtos a impropias, multiplica numeradores y denominadores, y simplifica.", "steps": ["Triplicar 2¾ significa multiplicar por 3.", "2¾ = 11/4. Entonces 11/4 × 3 = 33/4 = 8¼.", "Respuesta: D."]}, {"n": 103, "q": 10, "a": 22, "ans": "A", "method": "Proporción: organiza dos razones equivalentes, multiplica cruzado y despeja la incógnita.", "steps": ["Primero, 1,212 páginas en 3 minutos = 404 páginas por minuto.", "Si 1¼ impresoras producen 20 páginas/min, usa proporción: x = 404 × 1.25 ÷ 20.", "x = 25¼ impresoras equivalentes.", "Respuesta: A."]}, {"n": 104, "q": 11, "a": 22, "ans": "D", "method": "Suma de números mixtos: suma las dos áreas de terreno.", "steps": ["Suma las dos propiedades: 1¾ + 2⅛.", "Convierte ¾ = 6/8. Entonces 1 6/8 + 2 1/8 = 3⅞.", "Respuesta: D."]}, {"n": 105, "q": 11, "a": 22, "ans": "C", "method": "Convierte 4 2/3 años a meses; divide entre períodos de 8 meses y multiplica por 3 cambios.", "steps": ["4⅔ años = 4⅔ × 12 = 56 meses.", "56 meses contienen 7 períodos de 8 meses.", "En cada período hay 3 cambios: 7 × 3 = 21.", "Respuesta: C."]}, {"n": 106, "q": 11, "a": 23, "ans": "C", "method": "Cada entero contiene 8 octavos: 4 enteros = 32 octavos; suma los 5 octavos.", "steps": ["Cada entero tiene 8 octavos. Cuatro enteros = 32 octavos.", "Suma los 5 octavos: 32 + 5 = 37 octavos.", "Respuesta: C."]}, {"n": 107, "q": 11, "a": 23, "ans": "C", "method": "Duplicar una fracción: multiplica 2/3 por 2.", "steps": ["Duplicar la receta significa multiplicar 2/3 de taza por 2.", "2/3 × 2 = 4/3 = 1⅓.", "Respuesta: C."]}, {"n": 108, "q": 11, "a": 23, "ans": "D", "method": "Multiplicación de fracciones: convierte números mixtos a impropias, multiplica numeradores y denominadores, y simplifica.", "steps": ["Si vende 1/3, conserva 2/3 de la tierra.", "4¾ × 2/3 = 19/4 × 2/3 = 38/12 = 19/6 = 3⅙.", "Respuesta: D."]}, {"n": 109, "q": 12, "a": 23, "ans": "B", "method": "Trabaja en cadena: calcula lo que toma cada persona del remanente, resta y continúa.", "steps": ["12 docenas = 144 galletas. Tim toma 1/9: 144×1/9=16, quedan 128.", "Bob toma 3/16 de 128 = 24, quedan 104.", "Fred toma 4/13 de 104 = 32, quedan 72.", "72 de 144 = 1/2. Respuesta: B."]}, {"n": 110, "q": 12, "a": 23, "ans": "B", "method": "Fracción restante: calcula la fracción recaudada y réstala de 1.", "steps": ["Han recaudado $2,275 de $3,500: 2275/3500 = 13/20.", "Lo que falta es 1 − 13/20 = 7/20.", "Respuesta: B."]}, {"n": 111, "q": 12, "a": 24, "ans": "C", "method": "Fracción de una fracción: calcula cuánto comió y réstalo de lo que quedaba.", "steps": ["Quedaba 1/2 de pizza. Lori come 1/3 de esa mitad: 1/3 × 1/2 = 1/6.", "Después del desayuno queda 1/2 − 1/6 = 3/6 − 1/6 = 2/6 = 1/3.", "Respuesta: C."]}, {"n": 112, "q": 12, "a": 24, "ans": "D", "method": "Cada rebote conserva 2/3 de la altura anterior: multiplica por 2/3 cuatro veces.", "steps": ["Cada rebote queda en 2/3 de la altura anterior.", "Después de 4 rebotes: 108 × (2/3)^4 = 108 × 16/81.", "Resultado = 64/3 = 21⅓ pies.", "Respuesta: D."]}, {"n": 113, "q": 13, "a": 24, "ans": "B", "method": "Fracción de una cantidad: multiplica 120 por 3/5.", "steps": ["Calcula 3/5 de 120 tazas.", "120 × 3/5 = 72.", "Respuesta: B."]}, {"n": 114, "q": 13, "a": 24, "ans": "B", "method": "Tiempo = combustible disponible ÷ consumo por hora.", "steps": ["Tiempo = combustible disponible ÷ consumo por hora.", "6⅓ ÷ 9½ = 19/3 ÷ 19/2 = 19/3 × 2/19 = 2/3 de hora.", "Respuesta: B."]}, {"n": 115, "q": 13, "a": 25, "ans": "A", "method": "Convierte 3/4 de pie a pulgadas multiplicando por 12.", "steps": ["Convierte ¾ de pie a pulgadas.", "¾ × 12 = 9 pulgadas.", "La medida es 12 pies 9 pulgadas. Respuesta: A."]}, {"n": 116, "q": 13, "a": 25, "ans": "C", "method": "Multiplicación de fracciones: convierte números mixtos a impropias, multiplica numeradores y denominadores, y simplifica.", "steps": ["El estado paga 2/3 del costo total.", "$15,300,000 × 2/3 = $10,200,000.", "Respuesta: C."]}, {"n": 117, "q": 14, "a": 25, "ans": "B", "method": "Convierte 3 1/2 pulgadas a cuartos de pulgada y multiplica por 150 millas por cada 1/4.", "steps": ["Cada ¼ de pulgada representa 150 millas.", "3½ pulgadas contienen 14 cuartos de pulgada.", "14 × 150 = 2,100 millas.", "Respuesta: B."]}, {"n": 118, "q": 14, "a": 25, "ans": "D", "method": "Resta el ancho de la pintura al ancho del marco y divide el espacio sobrante entre 2.", "steps": ["Sobra a lo ancho: 8 − 4½ = 3½ pulgadas.", "Como la pintura está centrada, reparte ese espacio entre los dos lados: 3½ ÷ 2 = 1¾.", "Respuesta: D."]}, {"n": 119, "q": 14, "a": 25, "ans": "B", "method": "División de fracciones: convierte mixtos a impropias, invierte la segunda fracción y multiplica.", "steps": ["Se reparte ½ libra entre 3 personas.", "½ ÷ 3 = ½ × ⅓ = 1/6.", "Respuesta: B."]}, {"n": 120, "q": 15, "a": 25, "ans": "D", "method": "Multiplicación de fracciones: convierte números mixtos a impropias, multiplica numeradores y denominadores, y simplifica.", "steps": ["Cada cuadro mide 1½ pies y hay 10 por lado.", "1½ × 10 = 15 pies por lado.", "Dimensiones: 15 pies × 15 pies. Respuesta: D."]}, {"n": 121, "q": 15, "a": 26, "ans": "A", "method": "División de fracciones: convierte mixtos a impropias, invierte la segunda fracción y multiplica.", "steps": ["Cada lazo usa 2/5 de yarda. Con 10 yardas, divide: 10 ÷ 2/5.", "10 × 5/2 = 25.", "Respuesta: A (25 lazos)."]}, {"n": 122, "q": 15, "a": 26, "ans": "A", "method": "Multiplicación de fracciones: convierte números mixtos a impropias, multiplica numeradores y denominadores, y simplifica.", "steps": ["La casa puede ocupar como máximo la mitad de ¾ de acre.", "¾ × ½ = 3/8 de acre.", "Respuesta: A."]}, {"n": 123, "q": 15, "a": 26, "ans": "B", "method": "Comparar fracciones: conviértelas a un denominador común y compara los numeradores.", "steps": ["Resta el precio del viernes al del lunes: 26⅜ − 23 1/16.", "Convierte ⅜ = 6/16.", "26 6/16 − 23 1/16 = 3 5/16.", "Respuesta: B."]}, {"n": 124, "q": 16, "a": 26, "ans": "B", "method": "Multiplica sucesivamente la cantidad que recibe cada niño por la fracción indicada.", "steps": ["Segundo niño: ¾ de 8 oz = 6 oz.", "Tercer niño: ½ de 6 oz = 3 oz.", "Cuarto niño: ⅔ de 3 oz = 2 oz.", "Respuesta: B."]}, {"n": 125, "q": 16, "a": 26, "ans": "C", "method": "Multiplicación de fracciones: convierte números mixtos a impropias, multiplica numeradores y denominadores, y simplifica.", "steps": ["Costo = acres × precio por acre.", "1¾ = 7/4. Entonces $60,000 × 7/4 = $105,000.", "Respuesta: C."]}];
+let idx=0;
+const $=id=>document.getElementById(id);
+const pick=$("pick");
+
+problems.forEach((p,i)=>{
+  const o=document.createElement("option");
+  o.value=i;o.textContent="Problema "+p.n;pick.appendChild(o);
+});
+
+function pathPage(n){return "pages/page-"+String(n).padStart(2,"0")+".jpg";}
+
+function render(){
+  const p=problems[idx];
+  pick.value=idx;
+  $("count").textContent=(idx+1)+" / "+problems.length;
+  $("label").textContent="Problema "+p.n;
+  $("method").textContent=p.method;
+  $("qimg").src=pathPage(p.q);
+  $("aimg").src=pathPage(p.a);
+  $("qerr").style.display="none";$("aerr").style.display="none";
+  $("qwrap").classList.remove("show");$("awrap").classList.remove("show");
+  $("toggleQ").textContent="Ver página";$("toggleA").textContent="Ver página";
+  $("explain").style.display="none";$("explainBtn").textContent="Explícame paso a paso";
+  const steps=$("steps");steps.innerHTML="";
+  p.steps.forEach((s,i)=>{
+    const row=document.createElement("div");row.className="step";
+    row.innerHTML='<div class="num">'+(i+1)+'</div><div>'+s+'</div>';
+    steps.appendChild(row);
+  });
+  $("final").textContent="Respuesta correcta: "+p.ans;
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+
+$("explainBtn").onclick=()=>{
+  const open=$("explain").style.display==="block";
+  $("explain").style.display=open?"none":"block";
+  $("explainBtn").textContent=open?"Explícame paso a paso":"Ocultar explicación";
+  if(!open)setTimeout(()=>$("explain").scrollIntoView({behavior:"smooth",block:"start"}),50);
+};
+$("toggleQ").onclick=()=>{
+  const w=$("qwrap");w.classList.toggle("show");
+  $("toggleQ").textContent=w.classList.contains("show")?"Ocultar página":"Ver página";
+};
+$("toggleA").onclick=()=>{
+  const w=$("awrap");w.classList.toggle("show");
+  $("toggleA").textContent=w.classList.contains("show")?"Ocultar página":"Ver página";
+};
+$("qimg").onerror=()=>$("qerr").style.display="block";
+$("aimg").onerror=()=>$("aerr").style.display="block";
+pick.onchange=()=>{idx=+pick.value;render()};
+$("prev").onclick=()=>{idx=Math.max(0,idx-1);render()};
+$("next").onclick=()=>{idx=Math.min(problems.length-1,idx+1);render()};
+render();
+</script>
+</body>
+</html>
