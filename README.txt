@@ -1,0 +1,1 @@
+Abre index.html en Safari, Chrome, Edge o Firefox. No requiere internet ni login. Incluye los problemas 64-125 y las páginas de explicación del PDF.
